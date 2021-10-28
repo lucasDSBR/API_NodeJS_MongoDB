@@ -1,31 +1,41 @@
-const users = [
-    {
-        id: "1",
-        name: "lucas silva ",
-        email: "lucassilva@gmail.com"
-    },
-    {
-        id: "2",
-        name: "tal tal",
-        email: "taltal@gmail.com"
-    }
-];
+import * as mongoose from 'mongoose';
 
-export class User {
-    static findAll(): Promise<any[]> {
-        return Promise.resolve(users);
-    }
+export interface User extends mongoose.Document {
+    name: string,
+    email: string,
+    password: string,
+    instituicao: string,
+    curso: string,
+    situacao: boolean,
+    tipoUsuario: string
 
-    static findById(id: string): Promise<any[]> {
-        return new Promise(resolve =>{
-            const filtred = users.filter(user => user.id === id)
-
-            let user = undefined
-            if(filtred.length > 0){
-                user = filtred.shift()
-            }
-            resolve(user)
-
-        })
-    }
 }
+//Imformar o mongoos quais são os metadados de tal documento
+const userSchema = new mongoose.Schema({
+    name: {
+        type: String
+    },
+    email: {
+        type: String,
+        unique: true
+    },
+    password: {
+        type: String,
+        select: false
+    },
+    instituicao: {
+        type: String
+    },
+    curso: {
+        type: String
+    },
+    situacao: {
+        type: Boolean
+    },
+    tipoUsuario: {
+        type: String
+    }
+});
+//fim
+
+export const User = mongoose.model<User>('User', userSchema)
