@@ -1,0 +1,26 @@
+{
+  "name": "API_NodeJS_MongoDB",
+  "version": "1.0.0",
+  "description": "API App lista Bus",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucasDSBR/API_NodeJS_MongoDB.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lucasDSBR/API_NodeJS_MongoDB/issues"
+  },
+  "homepage": "https://github.com/lucasDSBR/API_NodeJS_MongoDB#readme",
+  "dependencies": {
+    "restify": "6.3.4"
+  },
+  "devDependencies": {
+    "@types/restify": "5.0.6"
+  }
+}
