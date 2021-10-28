@@ -13,7 +13,7 @@ db.<nome-da-collection>.insert(teste)
 
 ### Search
 - Busca por id:
-    - db.<nome-da-collection>.find({_id:ObjectId("617ae03c390a0a31bac48a33")})
+    - db.[nome-da-collection].find({_id:ObjectId("617ae03c390a0a31bac48a33")})
 - Busca geral:
     - db.<nome-da-collection>.find()
 - Busca primeiro objeto de uma "lista":
