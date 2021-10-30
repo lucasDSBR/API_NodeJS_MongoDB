@@ -5,6 +5,7 @@ import { NotFoundError } from 'restify-errors';
 import { ModelRouter } from '../common/model-router';
 class UsersRouter extends ModelRouter<User> {
 
+    
     constructor(){
         super(User)
         this.on('beforeRender', document=>{
@@ -12,19 +13,21 @@ class UsersRouter extends ModelRouter<User> {
         })
     }
 
+
     applyRoutes(application: restify.Server){
         //Configurações das rotas transferidas para => "./common/model-router.ts"
-        application.get('/users', this.findAll)
 
-        application.get('/users/:id', [this.validateId, this.findById])
+        application.get(`${this.basePath}`, this.findAll)
 
-        application.post('/users', this.save)
+        application.get(`${this.basePath}/:id`, [this.validateId, this.findById])
 
-        application.put('/users/:id', [this.validateId, this.replace])
+        application.post(`${this.basePath}`, this.save)
 
-        application.patch('/users/:id', [this.validateId, this.update])
+        application.put(`${this.basePath}/:id`, [this.validateId, this.replace])
 
-        application.del('/users/:id', [this.validateId, this.update])
+        application.patch(`${this.basePath}/:id`, [this.validateId, this.update])
+
+        application.del(`${this.basePath}/:id`, [this.validateId, this.update])
 
     }
 }

@@ -20,14 +20,19 @@ class ListsRouter extends model_router_1.ModelRouter {
             }).catch;
         };
     }
+    envelope(document) {
+        let resource = super.envelope(document);
+        resource._links.users = `${this.basePath}/${resource._id}`;
+        return resource;
+    }
     applyRoutes(application) {
         //Configurações das rotas transferidas para => "./common/model-router.ts"
-        application.get('/lists', this.findAll);
-        application.get('/lists/:id', [this.validateId, this.findById]);
-        application.post('/lists', this.save);
-        application.put('/lists/:id', [this.validateId, this.replace]);
-        application.patch('/lists/:id', [this.validateId, this.update]);
-        application.del('/lists/:id', [this.validateId, this.update]);
+        application.get(`${this.basePath}`, this.findAll);
+        application.get(`${this.basePath}/:id`, [this.validateId, this.findById]);
+        application.post(`${this.basePath}`, this.save);
+        application.put(`${this.basePath}/:id`, [this.validateId, this.replace]);
+        application.patch(`${this.basePath}/:id`, [this.validateId, this.update]);
+        application.del(`${this.basePath}/:id`, [this.validateId, this.update]);
     }
 }
 exports.listsRouter = new ListsRouter();
