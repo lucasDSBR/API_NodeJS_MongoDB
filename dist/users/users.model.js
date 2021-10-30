@@ -33,9 +33,6 @@ const userSchema = new mongoose.Schema({
     situacao: {
         type: Boolean
     },
-    tipoUsuario: {
-        type: String
-    },
     genero: {
         trype: String,
         required: false,
@@ -48,8 +45,21 @@ const userSchema = new mongoose.Schema({
             validator: validators_1.validateCPF,
             message: '{PATH}: Invalid CPF ({VALUE})'
         }
+    },
+    profiles: {
+        type: [String],
+        required: false
     }
 });
+userSchema.statics.findByEmail = function (email, projection) {
+    return this.findOne({ email }, projection);
+};
+userSchema.methods.hasAny = function (...profiles) {
+    return profiles.some(profile => this.profile.indexOf(profile) !== -1);
+};
+userSchema.methods.matches = function (password) {
+    return bcrypt.compareSync(password, this.password);
+};
 //cript password
 const hashPassword = (obj, next) => {
     bcrypt.hash(obj.password, environment_1.environment.security.saltRounds)

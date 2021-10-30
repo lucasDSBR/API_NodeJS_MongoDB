@@ -4,6 +4,7 @@ exports.listsRouter = void 0;
 const lists_model_1 = require("./lists.model");
 const restify_errors_1 = require("restify-errors");
 const model_router_1 = require("../common/model-router");
+const authz_handler_1 = require("../Security/authz.handler");
 class ListsRouter extends model_router_1.ModelRouter {
     constructor() {
         super(lists_model_1.Lists);
@@ -29,10 +30,10 @@ class ListsRouter extends model_router_1.ModelRouter {
         //Configurações das rotas transferidas para => "./common/model-router.ts"
         application.get(`${this.basePath}`, this.findAll);
         application.get(`${this.basePath}/:id`, [this.validateId, this.findById]);
-        application.post(`${this.basePath}`, this.save);
-        application.put(`${this.basePath}/:id`, [this.validateId, this.replace]);
+        application.post(`${this.basePath}`, [(0, authz_handler_1.authorize)('admin'), this.save]);
+        application.put(`${this.basePath}/:id`, [(0, authz_handler_1.authorize)('admin'), this.validateId, this.replace]);
         application.patch(`${this.basePath}/:id`, [this.validateId, this.update]);
-        application.del(`${this.basePath}/:id`, [this.validateId, this.update]);
+        application.del(`${this.basePath}/:id`, [(0, authz_handler_1.authorize)('admin'), this.validateId, this.update]);
     }
 }
 exports.listsRouter = new ListsRouter();
