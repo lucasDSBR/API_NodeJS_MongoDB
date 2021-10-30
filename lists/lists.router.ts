@@ -10,6 +10,12 @@ class ListsRouter extends ModelRouter<Lists>{
         super(Lists)
     }
 
+    envelope(document){
+        let resource = super.envelope(document)
+        resource._links.users = `${this.basePath}/${resource._id}`
+        return resource
+    }
+
     findUserslist = (req, resp, next) => {
         Lists.findById(req.params.id, "+users")
         .then(rest =>{
@@ -24,17 +30,17 @@ class ListsRouter extends ModelRouter<Lists>{
 
     applyRoutes(application: restify.Server){
         //Configurações das rotas transferidas para => "./common/model-router.ts"
-        application.get('/lists', this.findAll)
+        application.get(`${this.basePath}`, this.findAll)
 
-        application.get('/lists/:id', [this.validateId, this.findById])
+        application.get(`${this.basePath}/:id`, [this.validateId, this.findById])
 
-        application.post('/lists', this.save)
+        application.post(`${this.basePath}`, this.save)
 
-        application.put('/lists/:id', [this.validateId, this.replace])
+        application.put(`${this.basePath}/:id`, [this.validateId, this.replace])
 
-        application.patch('/lists/:id', [this.validateId, this.update])
+        application.patch(`${this.basePath}/:id`, [this.validateId, this.update])
 
-        application.del('/lists/:id', [this.validateId, this.update])
+        application.del(`${this.basePath}/:id`, [this.validateId, this.update])
 
     }
 }
