@@ -4,7 +4,7 @@
   "description": "API App lista Bus",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -13,17 +13,40 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "jest": {
+    "testEnvironment": "node",
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__test__/.*|(\\.|/)(test|spec))||.(jsx?|tsx)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
+  },
   "bugs": {
     "url": "https://github.com/lucasDSBR/API_NodeJS_MongoDB/issues"
   },
   "homepage": "https://github.com/lucasDSBR/API_NodeJS_MongoDB#readme",
   "dependencies": {
     "bcrypt": "5.0.1",
+    "jsonwebtoken": "8.1.1",
     "mongoose": "4.13.9",
     "restify": "6.3.4"
   },
   "devDependencies": {
+    "@types/jest": "^22.1.2",
+    "@types/jsonwebtoken": "7.2.5",
     "@types/mongoose": "4.7.32",
-    "@types/restify": "5.0.6"
+    "@types/restify": "5.0.6",
+    "@types/supertest": "^2.0.4",
+    "jest": "^22.4.2",
+    "supertest": "^3.0.0",
+    "ts-jest": "^22.0.4",
+    "typescript": "^2.6.2"
   }
 }

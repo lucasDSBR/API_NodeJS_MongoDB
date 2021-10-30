@@ -4,13 +4,15 @@ import { Router } from '../common/router';
 import * as mongoose from 'mongoose';
 import { mergePatchBodyParser } from './merge-patch.parser';
 import { handlerError } from './error.handler';
-
+import { tokenParser } from '../Security/token.parser'
 export class Server {
 
     application: restify.Server;
     initializeDb(): mongoose.MongooseThenable {
         (<any>mongoose).Promise = global.Promise
-        return mongoose.connect(environment.db.url)
+        return mongoose.connect(environment.db.url, {
+            useMongoClient: true
+        })
     }
     initRoutes(routers: Router[]): Promise<any>{
         return new Promise((resolve, reject) =>{
@@ -23,6 +25,7 @@ export class Server {
                 this.application.use(restify.plugins.queryParser())
                 this.application.use(restify.plugins.bodyParser())
                 this.application.use(mergePatchBodyParser)
+                this.application.use(tokenParser)
                 //routes
                 for(let router of routers){
                     router.applyRoutes(this.application)
