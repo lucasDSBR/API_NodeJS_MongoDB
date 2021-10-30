@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/lucasDSBR/API_NodeJS_MongoDB#readme",
   "dependencies": {
+    "bcrypt": "5.0.1",
     "mongoose": "4.13.9",
     "restify": "6.3.4"
   },
