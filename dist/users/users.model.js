@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.User = void 0;
 const mongoose = require("mongoose");
-const validators_1 = require("../common/validators");
 const bcrypt = require("bcrypt");
 const environment_1 = require("../common/environment");
 //Imformar o mongoos quais são os metadados de tal documento
@@ -27,6 +26,9 @@ const userSchema = new mongoose.Schema({
     instituicao: {
         type: String
     },
+    cidade: {
+        type: String
+    },
     curso: {
         type: String
     },
@@ -37,14 +39,6 @@ const userSchema = new mongoose.Schema({
         trype: String,
         required: false,
         enum: ['Male', 'Female']
-    },
-    cpf: {
-        type: String,
-        required: false,
-        validate: {
-            validator: validators_1.validateCPF,
-            message: '{PATH}: Invalid CPF ({VALUE})'
-        }
     },
     profiles: {
         type: [String],

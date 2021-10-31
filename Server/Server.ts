@@ -4,7 +4,9 @@ import { Router } from '../common/router';
 import * as mongoose from 'mongoose';
 import { mergePatchBodyParser } from './merge-patch.parser';
 import { handlerError } from './error.handler';
-import { tokenParser } from '../Security/token.parser'
+import { tokenParser } from '../Security/token.parser';
+import * as corsMiddleware from 'restify-cors-middleware';
+
 export class Server {
 
     application: restify.Server;
@@ -19,9 +21,21 @@ export class Server {
             try{
                 this.application = restify.createServer({
                     name: 'meat-api',
-                    version: '1.0.0'
+                    version: '1.0.0',
+
                 })
+
+                const corsOptions: corsMiddleware.Options = {
+                    preflightMaxAge: 10,
+                    origins: ['*'], //origem da requisição exemplo: http://localhost:02320
+                    allowHeaders: ['authorization'],
+                    exposeHeaders: ['x-custom-header']
+                }
+                const cors: corsMiddleware.CorsMiddleware = corsMiddleware(corsOptions)
+
+                this.application.pre(cors.preflight)
                 //Plugins
+                this.application.use(cors.actual)
                 this.application.use(restify.plugins.queryParser())
                 this.application.use(restify.plugins.bodyParser())
                 this.application.use(mergePatchBodyParser)

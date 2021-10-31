@@ -7,6 +7,7 @@ const mongoose = require("mongoose");
 const merge_patch_parser_1 = require("./merge-patch.parser");
 const error_handler_1 = require("./error.handler");
 const token_parser_1 = require("../Security/token.parser");
+const corsMiddleware = require("restify-cors-middleware");
 class Server {
     initializeDb() {
         mongoose.Promise = global.Promise;
@@ -19,9 +20,18 @@ class Server {
             try {
                 this.application = restify.createServer({
                     name: 'meat-api',
-                    version: '1.0.0'
+                    version: '1.0.0',
                 });
+                const corsOptions = {
+                    preflightMaxAge: 10,
+                    origins: ['*'],
+                    allowHeaders: ['authorization'],
+                    exposeHeaders: ['x-custom-header']
+                };
+                const cors = corsMiddleware(corsOptions);
+                this.application.pre(cors.preflight);
                 //Plugins
+                this.application.use(cors.actual);
                 this.application.use(restify.plugins.queryParser());
                 this.application.use(restify.plugins.bodyParser());
                 this.application.use(merge_patch_parser_1.mergePatchBodyParser);

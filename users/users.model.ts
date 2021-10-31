@@ -43,6 +43,9 @@ const userSchema = new mongoose.Schema({
     instituicao: {
         type: String
     },
+    cidade: {
+        type: String
+    },
     curso: {
         type: String
     },
@@ -53,15 +56,6 @@ const userSchema = new mongoose.Schema({
         trype: String,
         required: false,
         enum: ['Male', 'Female']
-    },
-    cpf: {
-        type: String,
-        required: false,
-        validate: {
-            validator: validateCPF,
-            message: '{PATH}: Invalid CPF ({VALUE})'
-        }
-
     },
     profiles : {
         type: [String],
