@@ -34,9 +34,9 @@
   "homepage": "https://github.com/lucasDSBR/API_NodeJS_MongoDB#readme",
   "dependencies": {
     "bcrypt": "5.0.1",
+    "http-parser-js": "^0.5.3",
     "jsonwebtoken": "8.1.1",
     "mongoose": "4.13.9",
-    "restify": "6.3.4",
     "restify-cors-middleware": "1.1.0"
   },
   "devDependencies": {
@@ -47,6 +47,7 @@
     "@types/restify-cors-middleware": "1.0.1",
     "@types/supertest": "^2.0.4",
     "jest": "^22.4.2",
+    "restify": "^8.5.1",
     "supertest": "^3.0.0",
     "ts-jest": "^22.0.4",
     "typescript": "^2.6.2"

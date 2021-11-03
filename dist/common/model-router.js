@@ -46,7 +46,6 @@ class ModelRouter extends router_1.Router {
             const options = { runValidators: true, overwrite: true };
             this.model.update({ _id: req.params.id }, req.body, options)
                 .exec().then((result) => {
-                console.log(result);
                 if (result.n) {
                     resp.send(204);
                 }
