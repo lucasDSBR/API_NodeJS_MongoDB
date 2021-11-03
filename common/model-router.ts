@@ -81,7 +81,6 @@ export abstract class ModelRouter<D extends mongoose.Document> extends Router {
         const options = {runValidators: true, overwrite: true}
             this.model.update({_id:req.params.id}, req.body, options)
                 .exec().then((result: any) => {
-                    console.log(result)
                     if(result.n){
                         resp.send(204);
                     }else{
