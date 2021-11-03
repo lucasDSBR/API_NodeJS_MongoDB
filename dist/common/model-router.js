@@ -8,7 +8,7 @@ class ModelRouter extends router_1.Router {
     constructor(model) {
         super();
         this.model = model;
-        this.pageSize = 2;
+        this.pageSize = 100;
         this.validateId = (req, res, next) => {
             if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
                 next(new restify_errors_1.NotFoundError('Document not found'));
@@ -39,6 +39,7 @@ class ModelRouter extends router_1.Router {
         };
         this.save = (req, resp, next) => {
             let document = new this.model(req.body);
+            console.log(document);
             document.save().then(this.render(resp, next))
                 .catch(next);
         };
@@ -66,6 +67,7 @@ class ModelRouter extends router_1.Router {
                 .exec().then((cmdResult) => {
                 if (cmdResult.result.n) {
                     resp.send(204);
+                    resp.json({ message: 'Usuário excluido com sucesso!' });
                 }
                 else {
                     throw new restify_errors_1.NotFoundError('Documento não encontrado');

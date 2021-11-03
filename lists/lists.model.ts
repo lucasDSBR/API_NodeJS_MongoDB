@@ -10,8 +10,8 @@ export interface UsersItem extends mongoose.Document {
 
 export interface Lists extends mongoose.Document {
     name: string;
-    dataIda: Date;
-    dataVolta: Date;
+    dataIda: Object;
+    dataVolta: Object;
     users: UsersItem[];
     situacao: boolean;
 }
@@ -42,10 +42,10 @@ const listsSchema = new mongoose.Schema({
         required: true
     },
     dataIda: {
-        type: String
+        type: Object
     },
     dataVolta: {
-        type: String
+        type: Object
     },
     users: {
         type: [UserlistSchema],

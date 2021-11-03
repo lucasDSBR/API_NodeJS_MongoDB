@@ -6,7 +6,7 @@ export abstract class ModelRouter<D extends mongoose.Document> extends Router {
 
     basePath: string
 
-    pageSize: number = 2
+    pageSize: number = 100
     constructor(
         protected model: mongoose.Model<D>
     ){
@@ -73,6 +73,7 @@ export abstract class ModelRouter<D extends mongoose.Document> extends Router {
 
     save = (req, resp, next) => {
         let document = new this.model(req.body)
+        console.log(document)
         document.save().then(this.render(resp, next))
         .catch(next)
     }
@@ -103,6 +104,7 @@ export abstract class ModelRouter<D extends mongoose.Document> extends Router {
         .exec().then((cmdResult: any)=>{
             if(cmdResult.result.n){
                 resp.send(204)
+                resp.json({message: 'Usuário excluido com sucesso!'})
             }else{
                 throw new NotFoundError('Documento não encontrado');
             }
