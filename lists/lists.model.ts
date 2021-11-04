@@ -13,6 +13,7 @@ export interface Lists extends mongoose.Document {
     name: string;
     dataIda: Object;
     dataVolta: Object;
+    totalUsers: number;
     users: UsersItem[];
     situacao: boolean;
 }
@@ -50,6 +51,9 @@ const listsSchema = new mongoose.Schema({
     },
     dataVolta: {
         type: Object
+    },
+    totalUsers: {
+        type: Number
     },
     users: {
         type: [UserlistSchema],

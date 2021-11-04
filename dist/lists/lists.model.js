@@ -34,6 +34,9 @@ const listsSchema = new mongoose.Schema({
     dataVolta: {
         type: Object
     },
+    totalUsers: {
+        type: Number
+    },
     users: {
         type: [UserlistSchema],
         required: false,
