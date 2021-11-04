@@ -18,6 +18,9 @@ const UserlistSchema = new mongoose.Schema({
     situacao: {
         type: Boolean,
         required: true
+    },
+    idPrincipal: {
+        type: String
     }
 });
 const listsSchema = new mongoose.Schema({

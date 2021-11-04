@@ -34,6 +34,7 @@
   "homepage": "https://github.com/lucasDSBR/API_NodeJS_MongoDB#readme",
   "dependencies": {
     "bcrypt": "5.0.1",
+    "restify": "^8.5.1",
     "http-parser-js": "^0.5.3",
     "jsonwebtoken": "8.1.1",
     "mongoose": "4.13.9",

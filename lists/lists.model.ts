@@ -5,6 +5,7 @@ export interface UsersItem extends mongoose.Document {
     name: string,
     vai: boolean,
     volta: boolean,
+    idPrincipal: string,
     situacao: boolean
 }
 
@@ -33,6 +34,9 @@ const UserlistSchema = new mongoose.Schema({
     situacao: {
         type: Boolean,
         required: true
+    },
+    idPrincipal:{
+        type: String
     }
 })
 

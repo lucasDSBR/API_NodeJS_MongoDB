@@ -33,7 +33,7 @@ class ListsRouter extends model_router_1.ModelRouter {
         application.post(`${this.basePath}`, [(0, authz_handler_1.authorize)('admin'), this.save]);
         application.put(`${this.basePath}/:id`, [(0, authz_handler_1.authorize)('admin'), this.validateId, this.replace]);
         application.patch(`${this.basePath}/:id`, [this.validateId, this.update]);
-        application.del(`${this.basePath}/:id`, [(0, authz_handler_1.authorize)('admin'), this.validateId, this.update]);
+        application.del(`${this.basePath}/:id`, [(0, authz_handler_1.authorize)('admin'), this.validateId, this.delete]);
     }
 }
 exports.listsRouter = new ListsRouter();
