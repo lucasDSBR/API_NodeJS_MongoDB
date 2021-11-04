@@ -1,4 +1,4 @@
-import { Server } from './server/Server';
+import { Server } from './Server/Server';
 import { usersRouter } from './users/users.router';
 import { listsRouter } from './lists/lists.router';
 const server = new Server();
