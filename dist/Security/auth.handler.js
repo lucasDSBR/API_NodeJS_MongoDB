@@ -12,7 +12,7 @@ const authenticate = (req, resp, next) => {
         if (user && user.matches(password)) {
             //gerar token
             const token = jwt.sign({ sub: user.email, iss: 'meat-api' }, environment_1.environment.security.apiSecret);
-            resp.json({ id: user._id, name: user.name, email: user.email, accessToken: token });
+            resp.json({ id: user._id, name: user.name, email: user.email, perfil: user.profiles, accessToken: token });
             return next(false);
         }
         else {

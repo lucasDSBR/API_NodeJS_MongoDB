@@ -10,6 +10,7 @@ export interface User extends mongoose.Document {
     instituicao: string,
     curso: string,
     situacao: boolean,
+    idPrincipal: string,
     profiles: string[],
     matches(password: string): boolean,
     hasAny(...profiles: string[]): boolean
@@ -46,6 +47,9 @@ const userSchema = new mongoose.Schema({
     cidade: {
         type: String
     },
+    idPrincipal: {
+        type: String
+    },
     curso: {
         type: String
     },
@@ -53,9 +57,8 @@ const userSchema = new mongoose.Schema({
         type: Boolean
     },
     genero: {
-        trype: String,
-        required: false,
-        enum: ['Male', 'Female']
+        type: [String],
+        required: false
     },
     profiles : {
         type: [String],

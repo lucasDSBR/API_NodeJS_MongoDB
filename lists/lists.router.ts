@@ -40,7 +40,7 @@ class ListsRouter extends ModelRouter<Lists>{
 
         application.patch(`${this.basePath}/:id`, [this.validateId, this.update])
 
-        application.del(`${this.basePath}/:id`, [authorize('admin'), this.validateId, this.update])
+        application.del(`${this.basePath}/:id`, [authorize('admin'), this.validateId, this.delete])
 
     }
 }
