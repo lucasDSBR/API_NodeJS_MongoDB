@@ -2,7 +2,7 @@
   "name": "API_NodeJS_MongoDB",
   "version": "1.0.0",
   "description": "API App lista Bus",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
     "start": "node main.js"
   },
