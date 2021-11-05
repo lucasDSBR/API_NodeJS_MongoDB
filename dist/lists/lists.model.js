@@ -29,10 +29,10 @@ const listsSchema = new mongoose.Schema({
         required: true
     },
     dataIda: {
-        type: Object
+        type: String
     },
     dataVolta: {
-        type: Object
+        type: String
     },
     totalUsers: {
         type: Number
