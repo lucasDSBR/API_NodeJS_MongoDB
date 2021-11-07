@@ -39,7 +39,7 @@ class UsersRouter extends ModelRouter<User> {
 
         application.del(`${this.basePath}/:id`, [authorize('admin'), this.validateId, this.delete])
 
-        application.post(`${this.basePath}/login`, authenticate)
+        application.post(`${this.basePath}/login`)
 
     }
 }

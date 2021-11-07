@@ -3,7 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.usersRouter = void 0;
 const users_model_1 = require("./users.model");
 const model_router_1 = require("../common/model-router");
-const auth_handler_1 = require("../Security/auth.handler");
 const authz_handler_1 = require("../Security/authz.handler");
 class UsersRouter extends model_router_1.ModelRouter {
     constructor() {
@@ -30,7 +29,7 @@ class UsersRouter extends model_router_1.ModelRouter {
         application.put(`${this.basePath}/:id`, [(0, authz_handler_1.authorize)('admin'), this.validateId, this.replace]);
         application.patch(`${this.basePath}/:id`, [(0, authz_handler_1.authorize)('admin'), this.validateId, this.update]);
         application.del(`${this.basePath}/:id`, [(0, authz_handler_1.authorize)('admin'), this.validateId, this.delete]);
-        application.post(`${this.basePath}/login`, auth_handler_1.authenticate);
+        application.post(`${this.basePath}/login`);
     }
 }
 exports.usersRouter = new UsersRouter();

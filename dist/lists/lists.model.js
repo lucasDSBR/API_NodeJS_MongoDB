@@ -21,6 +21,18 @@ const UserlistSchema = new mongoose.Schema({
     },
     idPrincipal: {
         type: String
+    },
+    horaEntrouNalista: {
+        type: String
+    },
+    userForaLimite: {
+        type: Boolean
+    },
+    confirmIda: {
+        type: Boolean
+    },
+    confirmVolta: {
+        type: Boolean
     }
 });
 const listsSchema = new mongoose.Schema({
