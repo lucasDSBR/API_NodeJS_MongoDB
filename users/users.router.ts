@@ -31,7 +31,7 @@ class UsersRouter extends ModelRouter<User> {
 
         application.get(`${this.basePath}/:id`, [authorize('admin'), this.validateId, this.findById])
 
-        application.post(`${this.basePath}`, [authorize('admin'),  this.save])
+        application.post(`${this.basePath}`, [this.save])
 
         application.put(`${this.basePath}/:id`, [authorize('admin'), this.validateId, this.replace])
 
@@ -39,7 +39,7 @@ class UsersRouter extends ModelRouter<User> {
 
         application.del(`${this.basePath}/:id`, [authorize('admin'), this.validateId, this.delete])
 
-        application.post(`${this.basePath}/login`)
+        application.post(`${this.basePath}/login`, authenticate)
 
     }
 }
